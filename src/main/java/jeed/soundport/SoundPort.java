@@ -10,13 +10,13 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 public class SoundPort
 {
     public static final String MODID = "soundport";
-    public static final String VERSION = "0.2";
+    public static final String VERSION = "0.3";
     
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
 		// some example code
-        System.out.println("DWERK BLOCK >> "+Blocks.dirt.getUnlocalizedName());
+//        System.out.println("DWERK BLOCK >> "+Blocks.dirt.getUnlocalizedName());
 
         MinecraftForge.EVENT_BUS.register(new SoundPortEvents());
     }
