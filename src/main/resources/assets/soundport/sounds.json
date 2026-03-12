@@ -14,5 +14,32 @@
             {"name": "soundport:witch_death2", "stream": false},
             {"name": "soundport:witch_death3", "stream": false}
         ]
+    },
+    "witch.idle": {
+        "category": "hostile",
+        "sounds": [
+            {"name": "soundport:witch_idle1", "stream": false},
+            {"name": "soundport:witch_idle2", "stream": false},
+            {"name": "soundport:witch_idle3", "stream": false},
+            {"name": "soundport:witch_idle4", "stream": false},
+            {"name": "soundport:witch_idle5", "stream": false}
+        ]
+    },
+    "witch.drink": {
+        "category": "hostile",
+        "sounds": [
+            {"name": "soundport:witch_drink1", "stream": false},
+            {"name": "soundport:witch_drink2", "stream": false},
+            {"name": "soundport:witch_drink3", "stream": false},
+            {"name": "soundport:witch_drink4", "stream": false}
+        ]
+    },
+    "witch.throw": {
+        "category": "hostile",
+        "sounds": [
+            {"name": "soundport:witch_throw1", "stream": false},
+            {"name": "soundport:witch_throw2", "stream": false},
+            {"name": "soundport:witch_throw3", "stream": false}
+        ]
     }
 }
