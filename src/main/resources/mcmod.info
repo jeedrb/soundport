@@ -1,0 +1,16 @@
+[
+{
+  "modid": "soundport",
+  "name": "SoundPort 1.8.9",
+  "description": "Backports some missing sounds",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Jeed"],
+  "credits": "@Jeed on discord",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
