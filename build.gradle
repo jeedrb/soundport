@@ -2,10 +2,10 @@
 // For those who want the bleeding edge
 buildscript {
     repositories {
-        jcenter()
+        mavenCentral()
         maven {
             name = "forge"
-            url = "https://files.minecraftforge.net/maven"
+            url = "https://maven.minecraftforge.net"
         }
     }
     dependencies {
@@ -20,8 +20,8 @@ plugins {
     id "net.minecraftforge.gradle.forge" version "2.0.2"
 }
 */
-version = "0.3"
-group= "com.yourname.modid" // https://maven.apache.org/guides/mini/guide-naming-conventions.html
+version = "0.5"
+group= "jeed.soundport" // https://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "soundport"
 
 minecraft {
@@ -80,3 +80,4 @@ processResources
         exclude 'mcmod.info'
     }
 }
+
