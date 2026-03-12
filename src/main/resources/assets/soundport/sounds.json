@@ -1,0 +1,18 @@
+{
+    "witch.hurt": {
+        "category": "hostile",
+        "sounds": [
+            {"name": "soundport:witch_hurt1", "stream": false},
+            {"name": "soundport:witch_hurt2", "stream": false},
+            {"name": "soundport:witch_hurt3", "stream": false}
+        ]
+    },
+    "witch.death": {
+        "category": "hostile",
+        "sounds": [
+            {"name": "soundport:witch_death1", "stream": false},
+            {"name": "soundport:witch_death2", "stream": false},
+            {"name": "soundport:witch_death3", "stream": false}
+        ]
+    }
+}
