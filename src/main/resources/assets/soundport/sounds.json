@@ -18,11 +18,11 @@
     "witch.idle": {
         "category": "hostile",
         "sounds": [
-            {"name": "soundport:witch_idle1", "stream": false},
-            {"name": "soundport:witch_idle2", "stream": false},
-            {"name": "soundport:witch_idle3", "stream": false},
-            {"name": "soundport:witch_idle4", "stream": false},
-            {"name": "soundport:witch_idle5", "stream": false}
+            {"name": "soundport:witch_ambient1", "stream": false},
+            {"name": "soundport:witch_ambient2", "stream": false},
+            {"name": "soundport:witch_ambient3", "stream": false},
+            {"name": "soundport:witch_ambient4", "stream": false},
+            {"name": "soundport:witch_ambient5", "stream": false}
         ]
     },
     "witch.drink": {

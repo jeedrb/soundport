@@ -60,7 +60,7 @@ public class SoundPortEvents {
                 if (witch.ticksExisted % 10 == 0) {
                     witch.worldObj.playSoundAtEntity( // waiter one drinking sound please!
                         witch,
-                        "random.drink", // use existing drink sound
+                        "soundport:witch.drink", // use the downloaded drinking sound so we can toggle it with the resource pack
                         1.0F,
                         pitch
                     );
@@ -78,7 +78,7 @@ public class SoundPortEvents {
             if (potion.getThrower() != null && potion.getThrower() instanceof EntityWitch) {
                 event.world.playSoundAtEntity( // waiter one throwing sound please!
                     potion.getThrower(),
-                    "random.bow", // use existing throw/arrow sound
+                    "soundport:witch.throw", // use the downloaded throwing sound so we can toggle it with the resource pack
                     1.0F,
                     0.8F + (potion.getThrower().getRNG().nextFloat() * 0.4F) // random pitch 0.8-1.2
                 );
