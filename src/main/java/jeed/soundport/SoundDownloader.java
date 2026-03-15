@@ -70,7 +70,11 @@ public class SoundDownloader {
                         "minecraft/sounds/dig/grass3.ogg",
                         "minecraft/sounds/dig/grass4.ogg",
 
-
+                        // stone
+                        "minecraft/sounds/dig/stone1.ogg",
+                        "minecraft/sounds/dig/stone2.ogg",
+                        "minecraft/sounds/dig/stone3.ogg",
+                        "minecraft/sounds/dig/stone4.ogg"
                     };
 
                     for (String path : witchTargets) {
@@ -136,7 +140,11 @@ public class SoundDownloader {
             steve.append("  \"wool.place\": { \"category\": \"block\", \"sounds\": [\"soundport:cloth1\", \"soundport:cloth2\", \"soundport:cloth3\", \"soundport:cloth4\"] },\n");
 
             // green sounds
-            steve.append("  \"green.place\": { \"category\": \"block\", \"sounds\": [\"soundport:grass1\", \"soundport:grass2\", \"soundport:grass3\", \"soundport:grass4\"] }\n");
+            steve.append("  \"green.place\": { \"category\": \"block\", \"sounds\": [\"soundport:grass1\", \"soundport:grass2\", \"soundport:grass3\", \"soundport:grass4\"] },\n");
+
+            // stone sounds
+            steve.append("  \"stone.place\": { \"category\": \"block\", \"sounds\": [\"soundport:stone1\", \"soundport:stone2\", \"soundport:stone3\", \"soundport:stone4\"] }\n");
+
 
             steve.append("}");
 
