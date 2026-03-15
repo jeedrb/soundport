@@ -1,11 +1,17 @@
 package jeed.soundport;
 
+import net.minecraft.entity.item.EntityItemFrame;
+import net.minecraft.entity.item.EntityPainting;
 import net.minecraft.entity.monster.EntityWitch;
 import net.minecraft.entity.projectile.EntityPotion;
+import net.minecraft.init.Items;
+import net.minecraft.item.*;
+import net.minecraft.util.BlockPos;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class SoundPortEvents {
@@ -81,6 +87,66 @@ public class SoundPortEvents {
                     "soundport:witch.throw", // use the downloaded throwing sound so we can toggle it with the resource pack
                     1.0F,
                     0.8F + (potion.getThrower().getRNG().nextFloat() * 0.4F) // random pitch 0.8-1.2
+                );
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onWoodPlace(PlayerInteractEvent event) { // doors and beds and armor stands FIX IRON DOORS
+        if (!event.world.isRemote && event.action == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
+
+            if (event.entityPlayer.getHeldItem() != null && (event.entityPlayer.getHeldItem().getItem() instanceof ItemDoor) || (event.entityPlayer.getHeldItem().getItem() instanceof ItemBed) || event.entityPlayer.getHeldItem().getItem() instanceof ItemArmorStand) {
+                BlockPos place = event.pos;
+                float pitch = 0.8F + (event.world.rand.nextFloat() * 0.4F);
+
+                event.world.playSoundEffect(
+                    (double)place.getX() + 0.5D,
+                    (double)place.getY() + 0.5D, // maybe 1.0 or 1.5 for door?
+                    (double)place.getZ() + 0.5D,
+                    "soundport:wood.place",
+                    1.0F,
+                    pitch
+                );
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onWoolPlace(PlayerInteractEvent event) { // paintings
+        if (!event.world.isRemote && event.action == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
+
+            if (event.entityPlayer.getHeldItem() != null && (event.entityPlayer.getHeldItem().getItem() == Items.painting || event.entityPlayer.getHeldItem().getItem() == Items.item_frame)) {
+                BlockPos place = event.pos;
+                float pitch = 0.8F + (event.world.rand.nextFloat() * 0.4F);
+
+                event.world.playSoundEffect(
+                    (double)place.getX() + 0.5D,
+                    (double)place.getY() + 0.5D, // maybe 1.0 or 1.5 for door?
+                    (double)place.getZ() + 0.5D,
+                    "soundport:wool.place",
+                    1.0F,
+                    pitch
+                );
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onGreenPlace(PlayerInteractEvent event) { // seeds and lily pads LILY PADS DO NOT WORK FIX THAT NEXT
+        if (!event.world.isRemote && event.action == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
+
+            if (event.entityPlayer.getHeldItem() != null && (event.entityPlayer.getHeldItem().getItem() instanceof ItemLilyPad || event.entityPlayer.getHeldItem().getItem() instanceof ItemSeeds)) {
+                BlockPos place = event.pos;
+                float pitch = 0.8F + (event.world.rand.nextFloat() * 0.4F);
+
+                event.world.playSoundEffect(
+                    (double)place.getX() + 0.5D,
+                    (double)place.getY() + 0.5D, // maybe 1.0 or 1.5 for door?
+                    (double)place.getZ() + 0.5D,
+                    "soundport:green.place",
+                    1.0F,
+                    pitch
                 );
             }
         }

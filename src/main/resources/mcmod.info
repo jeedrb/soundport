@@ -5,7 +5,7 @@
   "description": "Backports some missing sounds",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "",
+  "url": "https://modrinth.com/mod/soundport",
   "updateUrl": "",
   "authorList": ["JeedRB"],
   "credits": "@Jeed on discord",
