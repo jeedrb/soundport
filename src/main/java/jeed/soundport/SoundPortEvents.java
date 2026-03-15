@@ -17,6 +17,7 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -99,71 +100,6 @@ public class SoundPortEvents {
         }
     }
 
-//    @SubscribeEvent
-//    public void onWoodPlace(PlayerInteractEvent event) { // doors and beds and armor stands FIX IRON DOORS
-//        if (!event.world.isRemote && event.action == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
-//            if (event.entityPlayer.getHeldItem() == null) return;
-//
-//            if ((event.entityPlayer.getHeldItem().getItem() instanceof ItemDoor) || (event.entityPlayer.getHeldItem().getItem() instanceof ItemBed) || event.entityPlayer.getHeldItem().getItem() instanceof ItemArmorStand) {
-//                BlockPos place = event.pos;
-//                float pitch = 0.8F + (event.world.rand.nextFloat() * 0.4F);
-//
-//                event.world.playSoundEffect(
-//                    (double)place.getX() + 0.5D,
-//                    (double)place.getY() + 0.5D, // maybe 1.0 or 1.5 for door?
-//                    (double)place.getZ() + 0.5D,
-//                    "soundport:wood.place",
-//                    1.0F,
-//                    pitch
-//                );
-//            }
-//        }
-//    }
-
-//    @SubscribeEvent
-//    public void onWoolPlace(PlayerInteractEvent event) { // paintings and item frames
-//        if (!event.world.isRemote && event.action == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
-//            if (event.entityPlayer.getHeldItem() == null) return;
-//
-//            if ((event.entityPlayer.getHeldItem().getItem() == Items.painting || event.entityPlayer.getHeldItem().getItem() == Items.item_frame)) {
-//                BlockPos place = event.pos;
-//                float pitch = 0.8F + (event.world.rand.nextFloat() * 0.4F);
-//
-//                event.world.playSoundEffect(
-//                    (double)place.getX() + 0.5D,
-//                    (double)place.getY() + 0.5D,
-//                    (double)place.getZ() + 0.5D,
-//                    "soundport:wool.place",
-//                    1.0F,
-//                    pitch
-//                );
-//            }
-//        }
-//    }
-
-    // do a switch case with all the sounds in one method
-
-//    @SubscribeEvent
-//    public void onGreenPlace(PlayerInteractEvent event) { // seeds and lily pads LILY PADS DO NOT WORK FIX THAT NEXT
-//        if (!event.world.isRemote && event.action == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
-//            if (event.entityPlayer.getHeldItem() == null) return;
-//
-//            if ((event.entityPlayer.getHeldItem().getItem() instanceof ItemLilyPad || event.entityPlayer.getHeldItem().getItem() instanceof ItemSeeds)) {
-//                BlockPos place = event.pos;
-//                float pitch = 0.8F + (event.world.rand.nextFloat() * 0.4F);
-//
-//                event.world.playSoundEffect(
-//                    (double)place.getX() + 0.5D,
-//                    (double)place.getY() + 0.5D,
-//                    (double)place.getZ() + 0.5D,
-//                    "soundport:green.place",
-//                    1.0F,
-//                    pitch
-//                );
-//            }
-//        }
-//    }
-
     @SubscribeEvent
     public void onBlockPlace(BlockEvent.PlaceEvent event) {
         if (event.world.isRemote) return; // abort if the placement fails ig
@@ -173,10 +109,11 @@ public class SoundPortEvents {
 
         int soundCategory = 0; // category thingy, default to wood
         String soundArray[] = {
-            "soundport:wood.place", // 0 WOOD
-            "soundport:wool.place", // 1 CLOTH/WOOL
-            "soundport:green.place", // 2 GRASS/CROPS/GREEN
-            "soundport:stone.place" // 3 STONE/IRON
+            "", // BLANK FOR OTHER BLOCKS AND ITEMS
+            "soundport:wood.place", // 1 WOOD
+            "soundport:wool.place", // 2 CLOTH/WOOL
+            "soundport:green.place", // 3 GRASS/CROPS/GREEN
+            "soundport:stone.place" // 4 STONE/IRON
         };
 
         float pitch = 0.8F + (event.world.rand.nextFloat() * 0.4F);
@@ -185,55 +122,67 @@ public class SoundPortEvents {
         double z = event.pos.getZ() + 0.5D;
 
         if ((block instanceof BlockDoor && !(heldItem == Items.iron_door)) || block instanceof BlockBed || block instanceof BlockBanner || event.player.getHeldItem().getItem() == Items.item_frame) {
-            soundCategory = 0;
+            soundCategory = 1;
         } else if (heldItem instanceof ItemSeeds) {
-            soundCategory = 2;
-        } else if (heldItem == Items.iron_door) {
             soundCategory = 3;
+        } else if (heldItem == Items.iron_door) {
+            soundCategory = 4;
         }
 
-        event.world.playSoundEffect(
-            x,
-            y,
-            z,
-            soundArray[soundCategory].toString(),
-            1.0F,
-            pitch
-        );
-
-
-
-
+        event.world.playSoundEffect( x, y, z, soundArray[soundCategory].toString(),1.0F, pitch);
     }
 
     @SubscribeEvent
-    public void onEntityPlace(EntityJoinWorldEvent event) {
+    public void onEntityPlace(EntityJoinWorldEvent event) { // placing entities
         if (event.world.isRemote) return;
 
         int soundCategory = 0;
         String soundArray[] = {
-            "soundport:wood.place", // 0 WOOD
-            "soundport:wool.place", // 1 CLOTH/WOOL
+            "", // BLANK
+            "soundport:wood.place", // 1 WOOD
+            "soundport:wool.place", // 2 CLOTH/WOOL
         };
-
-        if (event.entity instanceof EntityPainting || event.entity instanceof  EntityItemFrame) {
-            soundCategory = 1;
-        } else if (event.entity instanceof EntityArmorStand) {
-            soundCategory = 0;
-        }
 
         float pitch = 0.8F + (event.world.rand.nextFloat() * 0.4F);
         double x = event.entity.posX + 0.5D;
         double y = event.entity.posY + 0.5D;
         double z = event.entity.posZ + 0.5D;
 
-        event.world.playSoundEffect(
-            x,
-            y,
-            z,
-            soundArray[soundCategory].toString(),
-            1.0F,
-            pitch
-        );
+        if (event.entity instanceof EntityPainting || event.entity instanceof  EntityItemFrame) {
+            soundCategory = 2;
+        } else if (event.entity instanceof EntityArmorStand) {
+            soundCategory = 1;
+        } else {
+            return;
+        }
+
+        event.world.playSoundEffect(x, y, z, soundArray[soundCategory].toString(), 1.0F, pitch);
+    }
+
+    @SubscribeEvent
+    public void onEntityBreak(AttackEntityEvent event) { // hitting/breaking entities
+        if (event.entity.worldObj.isRemote) return;
+
+        int soundCategory = 0;
+        String soundArray[] = {
+            "", // BLANK
+            "soundport:wood.place", // 0 WOOD
+            "soundport:wool.place", // 1 CLOTH/WOOL
+        };
+
+        float pitch = 0.8F + (event.entity.worldObj.rand.nextFloat() * 0.4F);
+        double x = event.entity.posX; // DON'T add 0.5D to these since they're entities and aren't on the grid
+        double y = event.entity.posY;
+        double z = event.entity.posZ;
+
+        if (event.target instanceof EntityItemFrame || event.target instanceof EntityPainting) {
+            soundCategory = 2;
+        } else if (event.target instanceof EntityArmorStand) {
+            soundCategory = 1;
+        } else {
+            return;
+        }
+
+        event.entity.worldObj.playSoundEffect(x, y, z, soundArray[soundCategory].toString(), 1.0F, pitch);
     }
 }
