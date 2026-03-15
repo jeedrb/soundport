@@ -95,6 +95,7 @@ public class SoundPortEvents {
     @SubscribeEvent
     public void onWoodPlace(PlayerInteractEvent event) { // doors and beds and armor stands FIX IRON DOORS
         if (!event.world.isRemote && event.action == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
+            if (event.entityPlayer.getHeldItem() == null) return;
 
             if (event.entityPlayer.getHeldItem() != null && (event.entityPlayer.getHeldItem().getItem() instanceof ItemDoor) || (event.entityPlayer.getHeldItem().getItem() instanceof ItemBed) || event.entityPlayer.getHeldItem().getItem() instanceof ItemArmorStand) {
                 BlockPos place = event.pos;
@@ -115,6 +116,7 @@ public class SoundPortEvents {
     @SubscribeEvent
     public void onWoolPlace(PlayerInteractEvent event) { // paintings
         if (!event.world.isRemote && event.action == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
+            if (event.entityPlayer.getHeldItem() == null) return;
 
             if (event.entityPlayer.getHeldItem() != null && (event.entityPlayer.getHeldItem().getItem() == Items.painting || event.entityPlayer.getHeldItem().getItem() == Items.item_frame)) {
                 BlockPos place = event.pos;
@@ -122,7 +124,7 @@ public class SoundPortEvents {
 
                 event.world.playSoundEffect(
                     (double)place.getX() + 0.5D,
-                    (double)place.getY() + 0.5D, // maybe 1.0 or 1.5 for door?
+                    (double)place.getY() + 0.5D,
                     (double)place.getZ() + 0.5D,
                     "soundport:wool.place",
                     1.0F,
@@ -135,6 +137,7 @@ public class SoundPortEvents {
     @SubscribeEvent
     public void onGreenPlace(PlayerInteractEvent event) { // seeds and lily pads LILY PADS DO NOT WORK FIX THAT NEXT
         if (!event.world.isRemote && event.action == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
+            if (event.entityPlayer.getHeldItem() == null) return;
 
             if (event.entityPlayer.getHeldItem() != null && (event.entityPlayer.getHeldItem().getItem() instanceof ItemLilyPad || event.entityPlayer.getHeldItem().getItem() instanceof ItemSeeds)) {
                 BlockPos place = event.pos;
@@ -142,7 +145,7 @@ public class SoundPortEvents {
 
                 event.world.playSoundEffect(
                     (double)place.getX() + 0.5D,
-                    (double)place.getY() + 0.5D, // maybe 1.0 or 1.5 for door?
+                    (double)place.getY() + 0.5D,
                     (double)place.getZ() + 0.5D,
                     "soundport:green.place",
                     1.0F,
