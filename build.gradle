@@ -20,7 +20,7 @@ plugins {
     id "net.minecraftforge.gradle.forge" version "2.0.2"
 }
 */
-version = "0.7.1"
+version = "0.7.2"
 group= "jeed.soundport" // https://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "soundport"
 
