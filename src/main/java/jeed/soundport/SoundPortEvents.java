@@ -109,7 +109,7 @@ public class SoundPortEvents {
 
         int soundCategory = 0; // category thingy, default to wood
         String soundArray[] = {
-            "", // BLANK FOR OTHER BLOCKS AND ITEMS
+            "", // 0 BLANK FOR OTHER BLOCKS AND ITEMS
             "soundport:wood.place", // 1 WOOD
             "soundport:wool.place", // 2 CLOTH/WOOL
             "soundport:green.place", // 3 GRASS/CROPS/GREEN
@@ -138,9 +138,11 @@ public class SoundPortEvents {
 
         int soundCategory = 0;
         String soundArray[] = {
-            "", // BLANK
+            "", // 0 BLANK FOR OTHER BLOCKS AND ITEMS
             "soundport:wood.place", // 1 WOOD
             "soundport:wool.place", // 2 CLOTH/WOOL
+            "soundport:green.place", // 3 GRASS/CROPS/GREEN
+            "soundport:stone.place" // 4 STONE/IRON
         };
 
         float pitch = 0.8F + (event.world.rand.nextFloat() * 0.4F);
@@ -151,7 +153,7 @@ public class SoundPortEvents {
         if (event.entity instanceof EntityPainting || event.entity instanceof  EntityItemFrame) {
             soundCategory = 2;
         } else if (event.entity instanceof EntityArmorStand) {
-            soundCategory = 1;
+            soundCategory = 4;
         } else {
             return;
         }
@@ -165,9 +167,11 @@ public class SoundPortEvents {
 
         int soundCategory = 0;
         String soundArray[] = {
-            "", // BLANK
-            "soundport:wood.place", // 0 WOOD
-            "soundport:wool.place", // 1 CLOTH/WOOL
+            "", // 0 BLANK FOR OTHER BLOCKS AND ITEMS
+            "soundport:wood.place", // 1 WOOD
+            "soundport:wool.place", // 2 CLOTH/WOOL
+            "soundport:green.place", // 3 GRASS/CROPS/GREEN
+            "soundport:stone.place" // 4 STONE/IRON
         };
 
         float pitch = 0.8F + (event.entity.worldObj.rand.nextFloat() * 0.4F);
@@ -178,7 +182,7 @@ public class SoundPortEvents {
         if (event.target instanceof EntityItemFrame || event.target instanceof EntityPainting) {
             soundCategory = 2;
         } else if (event.target instanceof EntityArmorStand) {
-            soundCategory = 1;
+            soundCategory = 4;
         } else {
             return;
         }
