@@ -9,8 +9,8 @@ It creates a resource pack for you to enable. Make sure to delete that when upda
 
 0.8.1
 - Signs
+- Lily Pads
 - Item Frame interaction
-- Armor Stand interaction
 
 0.8
 - Banners
@@ -40,6 +40,5 @@ It creates a resource pack for you to enable. Make sure to delete that when upda
 - Witches (hit, death, idle, drink, throw)
 
 Upcoming:
-- Lily Pads
 - Buckets
-- Item Frame and Armor Stand interaction
+- Armor Stand interaction
