@@ -13,7 +13,7 @@ import java.io.File;
 public class SoundPort
 {
     public static final String MODID = "soundport";
-    public static final String VERSION = "0.8";
+    public static final String VERSION = "0.8.1";
     
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {

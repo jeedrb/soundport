@@ -1,11 +1,15 @@
 package jeed.soundport;
 
+import ibxm.Player;
 import net.minecraft.block.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.entity.item.EntityPainting;
 import net.minecraft.entity.monster.EntityWitch;
 import net.minecraft.entity.projectile.EntityPotion;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.*;
 import net.minecraft.util.BlockPos;
@@ -15,9 +19,11 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
 
 public class SoundPortEvents {
 
@@ -66,10 +72,12 @@ public class SoundPortEvents {
 
     @SubscribeEvent
     public void onBlockPlace(BlockEvent.PlaceEvent event) {
-        if (event.world.isRemote) return; // abort if the placement fails ig
+        if (event.world.isRemote) return; // abort
 
         Block block = event.placedBlock.getBlock(); // get the block
         Item heldItem = event.player.getHeldItem().getItem(); // get the item if it's a dumb stupid kind of block
+
+        if (block == null || heldItem == null) return; // bye
 
         int soundCategory = 0;
         float pitch = 0.8F + (event.world.rand.nextFloat() * 0.4F);
@@ -77,12 +85,14 @@ public class SoundPortEvents {
         double y = event.pos.getY() + 0.5D;
         double z = event.pos.getZ() + 0.5D;
 
-        if ((block instanceof BlockDoor && !(heldItem == Items.iron_door)) || block instanceof BlockBed || block instanceof BlockBanner || event.player.getHeldItem().getItem() == Items.item_frame || block instanceof BlockBanner) {
+        if ((block instanceof BlockDoor && !(heldItem == Items.iron_door)) || block instanceof BlockBed || block instanceof BlockBanner || event.player.getHeldItem().getItem() == Items.item_frame || block instanceof BlockBanner || block instanceof BlockSign) {
             soundCategory = 1;
-        } else if (heldItem instanceof ItemSeeds) {
+        } else if (heldItem instanceof ItemSeeds || block instanceof BlockLilyPad) {
             soundCategory = 3;
         } else if (heldItem == Items.iron_door || block instanceof BlockSkull) {
             soundCategory = 4;
+        } else {
+            return;
         }
 
         event.world.playSoundEffect(x, y, z, soundArray[soundCategory].toString(),1.0F, pitch);
@@ -124,6 +134,27 @@ public class SoundPortEvents {
         if (event.target instanceof EntityItemFrame || event.target instanceof EntityPainting) {
             soundCategory = 2;
         } else if (event.target instanceof EntityArmorStand) {
+            soundCategory = 4;
+        } else {
+            return;
+        }
+
+        event.entity.worldObj.playSoundEffect(x, y, z, soundArray[soundCategory].toString(), 1.0F, pitch);
+    }
+
+    @SubscribeEvent
+    public void onEntityInteract(EntityInteractEvent event) { // interacting with entities
+        if (event.entity.worldObj.isRemote) return;
+
+        int soundCategory = 0;
+        float pitch = 0.8F + (event.entity.worldObj.rand.nextFloat() * 0.4F);
+        double x = event.entity.posX;
+        double y = event.entity.posY;
+        double z = event.entity.posZ;
+
+        if (event.target instanceof EntityItemFrame) {
+            soundCategory = 2;
+        } else if (event.target instanceof EntityArmorStand) { // doesn't work without a LOT of extra work
             soundCategory = 4;
         } else {
             return;
