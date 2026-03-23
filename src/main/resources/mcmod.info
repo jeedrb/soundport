@@ -7,8 +7,8 @@
   "mcversion": "${mcversion}",
   "url": "https://modrinth.com/mod/soundport",
   "updateUrl": "",
-  "authorList": ["JeedRB"],
-  "credits": "@Jeed on discord",
+  "authorList": ["Jeed/JeedRB"],
+  "credits": "me :)",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
