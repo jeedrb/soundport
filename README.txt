@@ -6,6 +6,9 @@ Backporting some sounds from modern Minecraft to 1.8.9, because the missing nois
 
 It creates a resource pack for you to enable. Make sure to delete that when updating so it can generate a new one!
 
+0.8.2
+- Carrots
+- Potatoes
 
 0.8.1
 - Signs

@@ -87,7 +87,7 @@ public class SoundPortEvents {
 
         if ((block instanceof BlockDoor && !(heldItem == Items.iron_door)) || block instanceof BlockBed || block instanceof BlockBanner || event.player.getHeldItem().getItem() == Items.item_frame || block instanceof BlockBanner || block instanceof BlockSign) {
             soundCategory = 1;
-        } else if (heldItem instanceof ItemSeeds || block instanceof BlockLilyPad) {
+        } else if (heldItem instanceof ItemSeeds || block instanceof BlockLilyPad || block instanceof BlockCarrot || block instanceof BlockPotato) {
             soundCategory = 3;
         } else if (heldItem == Items.iron_door || block instanceof BlockSkull) {
             soundCategory = 4;
