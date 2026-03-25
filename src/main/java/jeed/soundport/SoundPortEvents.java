@@ -98,7 +98,7 @@ public class SoundPortEvents {
 
             if (thisWitch.deathTime == 1) { // witch SMACK
                 thisWitch.worldObj.playSound(x, y, z, "soundport:witch.death", 1.0F, pitch, false);
-            } else if (thisWitch.hurtTime == thisWitch.maxHurtTime && thisWitch.hurtTime > 0) { // witch VANQUISH
+            } else if (thisWitch.hurtTime == thisWitch.maxHurtTime && thisWitch.hurtTime > 0 && thisWitch.getHealth() > 0) { // witch VANQUISH
                 thisWitch.worldObj.playSound(x, y, z, "soundport:witch.hurt", 1.0F, pitch, false);
             } else if (thisWitch.getDataWatcher().getWatchableObjectByte(21) == 1) { // witch getting CRUNK at the CLERB
                 if (thisWitch.ticksExisted % 10 == 0) {
@@ -109,6 +109,7 @@ public class SoundPortEvents {
             } else if (thisWitch.worldObj.rand.nextInt(100) == 67) { // witch IDLE, this can be any number for 1% so 67 because #lmao
                 if (thisWitch.ticksExisted > overlapCheck + 80) { // use the overlap check
                     thisWitch.worldObj.playSound(x, y, z, "soundport:witch.idle", 1.0F, pitch, false);
+                    overlapCheck = thisWitch.ticksExisted;
                 }
             }
 
@@ -149,7 +150,7 @@ public class SoundPortEvents {
 //    }
 
 //    @SubscribeEvent
-//    public void onPotionUpdate(EntityEvent.CanUpdate event) {
+//    public void onPotionUpdate(EntityJoinWorldEvent event) {
 //        if (!event.entity.worldObj.isRemote) return;
 //        if (!(event.entity instanceof EntityPotion)) return;
 //
@@ -157,8 +158,11 @@ public class SoundPortEvents {
 //
 //        EntityPotion thisPotion = (EntityPotion) event.entity;
 //
+//        int throwerId = thisPotion.getDataWatcher().getWatchableObjectInt(10);
+//        Entity thrower = event.world.getEntityByID(throwerId);
+//
 //        if (thisPotion.ticksExisted < 10) {
-//            if (thisPotion.getThrower() instanceof EntityWitch) {
+//            if (thrower instanceof EntityWitch) {
 //                float pitch = 0.8F + (thisPotion.worldObj.rand.nextFloat() * 0.4F);
 //                double x = thisPotion.posX;
 //                double y = thisPotion.posY;

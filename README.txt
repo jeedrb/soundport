@@ -6,16 +6,21 @@ Backporting some sounds from modern Minecraft to 1.8.9, because the missing nois
 
 It creates a resource pack for you to enable. Make sure to delete that when updating so it can generate a new one!
 
-0.8.2
+0.9:
+- Transitioning from alpha to beta!
+- Sound logic moved client-side, so we should be working on servers now!
+- All sounds besides witch throw are functional, fix for that Soon:tm:
+
+0.8.2:
 - Carrots
 - Potatoes
 
-0.8.1
+0.8.1:
 - Signs
 - Lily Pads
 - Item Frame interaction
 
-0.8
+0.8:
 - Banners
 - Skulls
 
